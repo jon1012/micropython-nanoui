@@ -19,6 +19,13 @@ class Controls(Widget):
         self.tft.line(self.width-self.zone_width+1, 0,
                       self.width-self.zone_width+1, self.height-1, 0x444444)
 
+        self.tft.image(self.tft.CENTER, self.tft.CENTER,
+                       'icons/ic_menu_white_24dp.jpg', type=self.tft.JPG)
+        self.tft.image(int(self.zone_width/2-(24/2)), self.tft.CENTER,
+                       'icons/ic_arrow_upward_white_24dp.jpg', type=self.tft.JPG)
+        self.tft.image(int(self.width-(self.zone_width/2+(24/2))), self.tft.CENTER,
+                       'icons/ic_arrow_downward_white_24dp.jpg', type=self.tft.JPG)
+
 
 class UI:
     def __init__(self, tft, width=320, height=240):
@@ -26,7 +33,7 @@ class UI:
         self.width = width
         self.height = height
         self._current_screen = None
-        self._controls = Controls(self.tft, 40, width, height)
+        self._controls = Controls(self.tft, 30, width, height)
 
     @property
     def screen_dimensions(self):
