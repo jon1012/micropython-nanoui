@@ -10,7 +10,7 @@ class Widget:
                         self.x+self.width-1, self.y+self.height-1)
 
     def _clear(self):
-        self.tft.clearwin()
+        self.tft.clearwin(self.background)
 
     def draw(self):
         print("not implemented")
@@ -19,7 +19,7 @@ class Widget:
 class Screen(Widget):
     def __init__(self, ui, background=0x000000):
         tft = ui.tft
-        x, y, self.width, self.height = ui.screen_dimensions()
+        x, y, self.width, self.height = ui.screen_dimensions
         super().__init__(tft, x, y, background=background)
         self._widgets = []
 
@@ -31,3 +31,13 @@ class Screen(Widget):
         for widget in self._widgets:
             widget._setwin()
             widget.draw()
+
+    def clear(self):
+        self._setwin()
+        self._clear()
+
+    def _get_actions(self):
+        return ['up', 'menu', 'down']
+
+    def _on_btn(self, btn):
+        print('btn %r pressed' % btn)

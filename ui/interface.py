@@ -41,6 +41,13 @@ class UI:
         """
         return (0, 0, self.width, self.height-self._controls.height)
 
+    def clean(self):
+        self._controls.is_dirty = True
+        if self._current_screen is not None:
+            self._current_screen.clear()
+            
+        self.redraw_screen()
+
     def set_screen(self, screen):
         self._current_screen = screen
 
